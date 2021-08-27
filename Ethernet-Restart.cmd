@@ -1,6 +1,6 @@
 @echo off
 
-::# Definir DefaultGateway
+::# Sets the DefaultGateway var
     :def
     for /f "tokens=3" %%* in (
     'route.exe print ^|findstr "\<0.0.0.0\>"'
@@ -9,7 +9,7 @@
     echo %DefaultGateway%
 
 
-::# Teste na conexao
+::# Connection test
     :con
 
      timeout /t 05
@@ -25,7 +25,7 @@
 
 
 
-::# Faz ping no DefaultGateway e da restart caso ping nao retornar
+::# Pings the DefaultGateway and restarts the pc if the ping is not responding
 
     :ping
 	   timeout /t 10
@@ -33,7 +33,7 @@
 
       if errorlevel 1 (
 
-        echo "Restart em 10 segundos"
+        echo "Restarting the PC"
 	      timeout /t 10
         shutdown -f -r -t 00
         ) else (
